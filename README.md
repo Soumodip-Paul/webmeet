@@ -21,7 +21,7 @@ This app is build using NodeJS, Socket.io, and Peerjs(WebRTC)
 
 ## How to clone this project
 
-***To clone this project ***
+***To clone this project***
 *   Install git for your Computer
     Download git from [here](https://git-scm.com/downloads) and install
 
