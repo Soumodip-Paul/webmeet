@@ -1,17 +1,43 @@
-const socket = io("/");
+const socket = io('/') ;
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 const showChat = document.querySelector("#showChat");
 const backBtn = document.querySelector(".header__back");
+const main__left = document.querySelector(".main__left");
+const main__right = document.querySelector(".main__right");
+
 myVideo.muted = true;
 
-backBtn.addEventListener("click", () => {
-  document.querySelector(".main__left").style.display = "flex";
-  document.querySelector(".main__left").style.flex = "1";
-  document.querySelector(".main__right").style.display = "none";
-  document.querySelector(".header__back").style.display = "none";
-});
+const configuration = {
+  iceServers: [
+    {
+      urls: [
+        'stun:stun1.l.google.com:19302',
+        'stun:stun2.l.google.com:19302',
+      ],
+    },
+  ]
+};
 
+
+backBtn.addEventListener("click", () => {
+  // document.querySelector(".main__left").style.display = "flex";
+  // document.querySelector(".main__left").style.flex = "1";
+  // document.querySelector(".main__right").style.display = "none";
+  // document.querySelector(".header__back").style.display = "none";
+
+  if (main__right.style.display === "none"){
+    main__right.style.display = "flex"
+    main__right.style.flex = "0.3"
+    main__left.style.flex ="0.7" 
+  }
+  else {
+    main__right.style.display = "none"
+    main__left.style.flex ="1" 
+  }
+  backBtn.classList.toggle('rotated')
+});
+backBtn.click();
 showChat.addEventListener("click", () => {
   document.querySelector(".main__right").style.display = "flex";
   document.querySelector(".main__right").style.flex = "1";
@@ -21,20 +47,24 @@ showChat.addEventListener("click", () => {
 
 const user = prompt("Enter your name");
 
-// var peer = new Peer(undefined, {
-//   path: "/peerjs",
-//   host: "/",
-//   port: "443",
-// });
+let constraints = {
+  audio: true,
+  video: {
+  width: {
+      max: 1920
+  },
+  height: {
+      max: 1080
+  },
+  
+  }
+}
 
-let peer = new Peer()
+let peer = new Peer(configuration)
 
 let myVideoStream;
 navigator.mediaDevices
-  .getUserMedia({
-    audio: true,
-    video: true,
-  })
+  .getUserMedia(constraints)
   .then((stream) => {
     myVideoStream = stream;
     addVideoStream(myVideo, stream);
@@ -46,7 +76,7 @@ navigator.mediaDevices
         addVideoStream(video, userVideoStream);
       });
     });
-
+    console.log("stream");
     socket.on("user-connected", (userId,socket_id) => {
       connectToNewUser(userId, stream,socket_id);
     });
@@ -165,4 +195,8 @@ function removePeer(socket_id) {
   }
   //if (peers[socket_id]) peers[socket_id].destroy()
   // delete peers[socket_id]
+}
+function setScreen(){
+  navigator.mediaDevices.getDisplayMedia(constraints). then(stream =>
+  {})
 }

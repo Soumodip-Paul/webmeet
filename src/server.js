@@ -1,18 +1,21 @@
 const express = require("express");
+const path = require("path");
 const app = express();
-const server = require("http").Server(app);
+const server = require("http").createServer(app);
 const { v4: uuidv4 } = require("uuid");
+const https = require('https')
 app.set("view engine", "ejs");
-const io = require("socket.io")(server, {
-  cors: {
-    origin: '*'
-  }
-});
 const { ExpressPeerServer } = require("peer");
 const peerServer = ExpressPeerServer(server, {
   debug: true,
 });
-
+const io = require("socket.io")(server 
+,{
+  cors: {
+    origin: '*'
+  }
+}
+);
 app.use("/peerjs", peerServer);
 app.use(express.static("public"));
 
@@ -38,5 +41,8 @@ io.on("connection", (socket) => {
     socket.broadcast.emit('removePeer', socket.id)
 })
 });
+app.use(express.static(path.join(__dirname, '..','public')))
+app.use(express.static(path.join(__dirname, '..','node_modules')))
 
-server.listen(process.env.PORT || 3030);
+
+server.listen(process.env.PORT || 3000);
