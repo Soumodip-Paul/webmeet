@@ -1,15 +1,19 @@
-const express = require("express");
-const path = require("path");
+import express from "express";
+import path from "path";
+import { ExpressPeerServer } from "peer";
+import http from "http"
+import Server from "socket.io";
+import {database} from "./database.mjs";
+import __dirname from "./defaultPath.js";
+// import { v4 as uuidv4 } from "uuid";
+// import https from 'https';
 const app = express();
-const server = require("http").createServer(app);
-const { v4: uuidv4 } = require("uuid");
-const https = require('https')
+const server = http.createServer(app);
 app.set("view engine", "ejs");
-const { ExpressPeerServer } = require("peer");
 const peerServer = ExpressPeerServer(server, {
   debug: true,
 });
-const io = require("socket.io")(server 
+const io = Server(server 
 ,{
   cors: {
     origin: '*'
@@ -20,6 +24,7 @@ app.use("/peerjs", peerServer);
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
+  database(req,res)
   res.render('index')
 });
 
