@@ -1,2 +1,4 @@
 node_modules
 Blog.md
+.gitignore
+package-lock.json
