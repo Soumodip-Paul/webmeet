@@ -73,8 +73,9 @@ export const firebaseConfiguration = {
 *   Open `Terminal` (For _Linux_ and _Os X_) or `PowerShell` (for _Windows_)
 
 *   Paste this Command
-
-    `git clone https://github.com/Soumodip-Paul/webmeet.git`
+    ```bash
+    git clone https://github.com/Soumodip-Paul/webmeet.git
+    ```
 
 *   This project is cloned in your device
 
