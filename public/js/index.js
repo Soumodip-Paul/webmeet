@@ -1,15 +1,17 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyA9jCW3r2lautg-IrG4vkUSUlW0yt8lmDk",
-  authDomain: "webacademy-video-meet.firebaseapp.com",
-  projectId: "webacademy-video-meet",
-  storageBucket: "webacademy-video-meet.appspot.com",
-  messagingSenderId: "673000090587",
-  appId: "1:673000090587:web:b91a660a41caf7655895fe",
-  measurementId: "G-0GJG5H5MTH"
-};
-firebase.initializeApp(firebaseConfig);
+import { firebaseConfiguration } from "./firebaseconfig.mjs";
 
-const createRoom = () =>{
-  console.log('hi')
+firebase.initializeApp(firebaseConfiguration);
+let db = firebase.firestore();
+let roomCollection = db.collection('room');
+let userCollection = db.collection('user');
 
+const createRoom = async () =>{
+  let room = roomCollection.doc();
+  await room.set({});
+  // let elem = document.createElement('a');
+  // elem.href = window.location.href + room.id;
+  // elem.click();
+  // elem.remove();
+  window.location.replace(window.location.href + room.id);
 }
+document.querySelector('#create_room').addEventListener('click', createRoom);

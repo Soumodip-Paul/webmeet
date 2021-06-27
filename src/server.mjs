@@ -24,21 +24,20 @@ app.use("/peerjs", peerServer);
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  database(req,res)
   res.render('index')
 });
 
 app.get("/:room", (req, res) => {
-  res.render("room", { roomId: req.params.room });
+  database(req,res)
 });
 
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId, userName) => {
-    console.log(roomId,userId,userName)
+    console.log(roomId,userId,userName,socket.id)
     socket.join(roomId);
     socket.to(roomId).broadcast.emit("user-connected", userId,socket.id);
-    socket.on("message", (message) => {
-      io.to(roomId).emit("createMessage", message, userName);
+    socket.on("message", (message, socket_id) => {
+      io.to(roomId).emit("createMessage", message, socket_id, userName);
     });
   });
   socket.on('disconnect', () => {

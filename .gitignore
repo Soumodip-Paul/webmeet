@@ -1,4 +1,5 @@
 node_modules
 Blog.md
-.gitignore
 package-lock.json
+# local configuration file not for public use
+public/js/firebaseconfig.mjs
