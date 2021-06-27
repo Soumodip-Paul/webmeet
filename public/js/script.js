@@ -5,6 +5,7 @@ const showChat = document.querySelector("#showChat");
 const backBtn = document.querySelector(".header__back");
 const main__left = document.querySelector(".main__left");
 const main__right = document.querySelector(".main__right");
+let my_socket_id;
 
 myVideo.muted = true;
 
@@ -19,6 +20,14 @@ const configuration = {
   ]
 };
 
+
+/**
+ * Audio Sounds Consts
+*/
+
+const messageSound = new Audio('./assets/audio/beep.mp3');
+
+messageSound.loop = false;
 
 backBtn.addEventListener("click", () => {
   // document.querySelector(".main__left").style.display = "flex";
@@ -62,13 +71,18 @@ let constraints = {
 
 let peer = new Peer(configuration)
 
+socket.on('connect', ()=> {
+  my_socket_id = socket.id;
+  console.log(socket.id);
+});
+
 let myVideoStream;
 navigator.mediaDevices
   .getUserMedia(constraints)
   .then((stream) => {
     myVideoStream = stream;
     addVideoStream(myVideo, stream);
-
+    
     peer.on("call", (call) => {
       call.answer(stream);
       const video = document.createElement("video");
@@ -76,7 +90,6 @@ navigator.mediaDevices
         addVideoStream(video, userVideoStream);
       });
     });
-    console.log("stream");
     socket.on("user-connected", (userId,socket_id) => {
       connectToNewUser(userId, stream,socket_id);
     });
@@ -118,7 +131,7 @@ send.addEventListener("click", (e) => {
 
 text.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && text.value.length !== 0) {
-    socket.emit("message", text.value);
+    socket.emit("message", text.value, my_socket_id);
     text.value = "";
   }
 });
@@ -130,12 +143,14 @@ muteButton.addEventListener("click", () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getAudioTracks()[0].enabled = false;
-    html = `<i class="fas fa-microphone-slash"></i>`;
+    // html = `<i class="fas fa-microphone-slash"></i>`;
+    html = `<img src ="./assets/svg/mic_off.svg">`
     muteButton.classList.toggle("background__red");
     muteButton.innerHTML = html;
   } else {
     myVideoStream.getAudioTracks()[0].enabled = true;
-    html = `<i class="fas fa-microphone"></i>`;
+    // html = `<i class="fas fa-microphone"></i>`;
+    html = `<img src ="./assets/svg/mic_on.svg">`
     muteButton.classList.toggle("background__red");
     muteButton.innerHTML = html;
   }
@@ -145,12 +160,12 @@ stopVideo.addEventListener("click", () => {
   const enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
-    html = `<i class="fas fa-video-slash"></i>`;
+    html = `<img src ="./assets/svg/videocam_off.svg"/>`;
     stopVideo.classList.toggle("background__red");
     stopVideo.innerHTML = html;
   } else {
     myVideoStream.getVideoTracks()[0].enabled = true;
-    html = `<i class="fas fa-video"></i>`;
+    html = `<img src ="./assets/svg/videocam_on.svg"/>`;
     stopVideo.classList.toggle("background__red");
     stopVideo.innerHTML = html;
   }
@@ -163,15 +178,16 @@ inviteButton.addEventListener("click", (e) => {
   );
 });
 
-socket.on("createMessage", (message, userName) => {
+socket.on("createMessage", (message, socket_id, userName) => {
   messages.innerHTML =
     messages.innerHTML +
     `<div class="message">
         <b><i class="far fa-user-circle"></i> <span> ${
-          userName === user ? "me" : userName
+          socket_id === my_socket_id ? "me" : userName 
         }</span> </b>
         <span>${message}</span>
     </div>`;
+    if(socket_id !== my_socket_id )messageSound.play();
 });
 
 socket.on('removePeer', socket_id => {
@@ -200,3 +216,11 @@ function setScreen(){
   navigator.mediaDevices.getDisplayMedia(constraints). then(stream =>
   {})
 }
+document.querySelector('#end_call').addEventListener('click',() => {
+  console.log('disconnect');
+  myVideoStream.getTracks().forEach(track =>{
+    track.stop()
+});
+  socket.disconnect();
+  window.location.replace('http://'+window.location.host)
+});
