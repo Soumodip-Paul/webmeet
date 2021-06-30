@@ -18,7 +18,7 @@ This app is build using NodeJS, Socket.io, and Peerjs(WebRTC) with Firebase as a
 4. Create a firebase project and then copy the credentials in the path `public/js/firebaseconfig.mjs` like
     <br/>
 
-    ```javascript
+    ```js
     export const firebaseConfiguration = {
         //...your config file
         //...paste here
@@ -73,7 +73,7 @@ export const firebaseConfiguration = {
 *   Open `Terminal` (For _Linux_ and _Os X_) or `PowerShell` (for _Windows_)
 
 *   Paste this Command
-    ```bash
+    ```ps1
     git clone https://github.com/Soumodip-Paul/webmeet.git
     ```
 

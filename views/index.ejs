@@ -4,14 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebAcademy meet</title>
+    <title>Welcome to WebAcademy Meet</title>
     <script src="/firebase/firebase-app.js"></script>
     <script src="/firebase/firebase-firestore.js"></script>
-    <script type="module" src="js/firebaseconfig.mjs"></script>
+    <script src="/firebase/firebase-auth.js"></script>
+    <script src="js/firebaseconfig.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+    <header>
+        <h1>WebAcademy Meet</h1>
+        <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur inventore sequi atque itaque laboriosam quos quis expedita dolorem quae quas!</h2>
+        <img id='user-img' src="assets/svg/user.svg" alt="WebAcademy Logo" style="right: 0;"/>
+        <img src="assets/svg/videocam_on.svg" alt="WebAcademy Logo" style="left: 0;"/>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Pricing</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms and Condition</a>
+            <a href="#">About us</a>
+        </nav>
+    </header>
+
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
+    <div id="login-container" class="modal hidden">
+        
+    </div>
+
     <button id="create_room">Create a room</button>
-    <script type="module" src="js/index.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

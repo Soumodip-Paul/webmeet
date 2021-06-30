@@ -1,0 +1,183 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: url(https://source.unsplash.com/1600x900/weekly?meeting) ;
+    height: 65vh;
+    width: 100%;
+    transition: all 1s ease-in-out;
+    border-radius: 0 0 16px 16px;
+}
+
+header h1{
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 20px 0px;
+    transition: all 1s ease-in-out;
+}
+
+header h2 {
+    display: block;
+    opacity: 1;
+    transition: all 1s ease-in-out;
+    padding: 3vh 10vw;
+    text-align: center;
+}
+
+header img {
+    position: absolute;
+    top: 0;
+    height: 64px;
+    width: 64px;
+    padding: 1%;
+    border-radius: 50%;
+    cursor: pointer;
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s;
+}
+
+.small-header h2 {
+    opacity: 0 !important;
+    font-size: small !important;
+}
+
+nav {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+    background: transparent;
+    align-content: space-between;
+    justify-content: center;
+}
+
+nav * {
+    padding: 1% 2%;
+    cursor: pointer;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 6px 6px 0 0;   
+    transition: all 0.5s ease-in-out;
+}
+
+nav a.active {
+    color: blue !important;
+    border-bottom: 4px solid blue;
+}
+
+nav a:hover {
+    background: rgba(135, 207, 235, 0.671);
+}
+
+
+.container {
+    padding: 1%;
+    margin: 1%;
+}
+
+.modal {
+    display: block; 
+    position: fixed;
+    z-index: 1100;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px;
+}
+
+.hidden {
+    display: none !important;
+}
+/*Snakbar or Toast Layout*/
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1100;
+    left: 5%;
+    bottom: 30px;
+    font-size: 17px;
+}
+  
+.toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+  
+
+/*Declaring Animations*/
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }

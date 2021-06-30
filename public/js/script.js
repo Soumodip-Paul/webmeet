@@ -182,7 +182,7 @@ socket.on("createMessage", (message, socket_id, userName) => {
   messages.innerHTML =
     messages.innerHTML +
     `<div class="message">
-        <b><i class="far fa-user-circle"></i> <span> ${
+        <b><img src='assets/svg/user.svg' alt='user' /> <span> ${
           socket_id === my_socket_id ? "me" : userName 
         }</span> </b>
         <span>${message}</span>

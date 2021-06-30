@@ -1,6 +1,6 @@
 import firebase from "firebase"
 import "@firebase/firestore"
-import { firebaseConfiguration } from "../public/js/firebaseconfig.mjs";
+import { firebaseConfiguration } from "./firebaseconfig.mjs";
 
 console.log(firebaseConfiguration);
 console.log('hi')
