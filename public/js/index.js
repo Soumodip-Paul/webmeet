@@ -4,29 +4,51 @@ let db = firebase.firestore();
 let currentUser;
 let roomCollection = db.collection('room');
 let userCollection = db.collection('user');
-const showToast = (html) => {
-  let toast = document.createElement('div');
-  toast.innerHTML = html;
-  toast.classList.add('toast','show');
-  document.body.append(toast)
-  setTimeout(()=> {
-    toast.classList.remove('show');
-    setTimeout(()=> toast.remove(),1000)
-  },3000);
+
+/**
+ * Tab Index Layout Manipulation
+*/
+function openPage(pageName,elmnt) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tab-link");
+  document.getElementById(pageName).style.display = "block";
+  elmnt.classList.add('active');
+  for (i = 0; i < tablinks.length; i++) {
+    if(tablinks[i].classList.contains('active')&&tablinks[i]!==elmnt) tablinks[i].classList.remove("active");
+  }
 }
 
-showToast('hi');
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("Home-Link").click();
+
+const toggleModal = () => {
+  document.querySelector('.modal').classList.toggle('hidden');
+}
 
 const createRoom = async () =>{
   let room = roomCollection.doc();
-  await room.set({});
+  let room_JSON = {
+    id: room.id,
+    host: currentUser.uid,
+    socket_ids: []
+
+  }
+  await room.set(room_JSON);
   // let elem = document.createElement('a');
   // elem.href = window.location.href + room.id;
   // elem.click();
   // elem.remove();
   window.location.replace(window.location.href + room.id);
 }
-document.querySelector('#create_room').addEventListener('click', createRoom);
+document.querySelector('#create_room').addEventListener('click', ()=>{
+  if(currentUser == null) toggleModal();
+  else createRoom();
+  // createRoom()
+});
 /**
  * Firebase User functions
 */
@@ -43,6 +65,7 @@ firebase.auth().onAuthStateChanged((user) => {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     updateUser(user);
+    if(!document.querySelector('.modal').classList.contains('hidden')) toggleModal();
     // ...
   } else {
     // User is signed out
@@ -51,7 +74,10 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
-const logOut = () => firebase.auth().signOut();
+const logOut = () => {
+  firebase.auth().signOut();
+  showToast("You Logged Out");
+}
 
 const getCurrentUser = () =>{
   const user = firebase.auth().currentUser;
@@ -86,6 +112,7 @@ const googleSignIn = () =>{
     var user = result.user;
     // ...
     updateUser(user);
+    showToast(user.displayName + " Logged In");
     
   }).catch((error) => {
     // Handle Errors here.
@@ -103,7 +130,7 @@ const googleSignIn = () =>{
 document.getElementById('user-img').addEventListener('click',()=>{
   console.log(currentUser);
   if (currentUser) logOut()
-  else googleSignIn()
+  else toggleModal()
 })
 
 const scrollEffect = (height) => {
@@ -122,9 +149,19 @@ const scrollEffect = (height) => {
   }
 };
 
+document.querySelector('#GSI').addEventListener('click',()=> googleSignIn())
+document.querySelector('#close').addEventListener('click',()=> toggleModal())
+
 window.onscroll =() => scrollEffect(65);
 
 window.onload = () => {
+  document.querySelector('body').style.display = 'block';
   currentUser = getCurrentUser();
   updateUser(currentUser);
+  document.getElementById("Home").click();
 };
+window.onclick = (e) =>{
+  if(e.target == document.querySelector('.modal')) {
+    toggleModal();
+  }
+}

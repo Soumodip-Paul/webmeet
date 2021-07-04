@@ -5,6 +5,16 @@ const showChat = document.querySelector("#showChat");
 const backBtn = document.querySelector(".header__back");
 const main__left = document.querySelector(".main__left");
 const main__right = document.querySelector(".main__right");
+
+// Firebase Scripts
+firebase.initializeApp(firebaseConfiguration);
+let currentUser;
+firebase.auth().onAuthStateChanged((user) => {
+  currentUser = user;
+});
+const getCurrentUser = () => {return firebase.auth().currentUser}
+//...
+
 let my_socket_id;
 
 myVideo.muted = true;
@@ -54,7 +64,7 @@ showChat.addEventListener("click", () => {
   document.querySelector(".header__back").style.display = "block";
 });
 
-const user = prompt("Enter your name");
+const user ="";
 
 let constraints = {
   audio: true,
@@ -107,7 +117,7 @@ const connectToNewUser = (userId, stream,socket_id) => {
 };
 
 peer.on("open", (id) => {
-  socket.emit("join-room", ROOM_ID, id, user);
+  socket.emit("join-room", ROOM_ID, id,currentUser? currentUser.displayName :  prompt("Enter your name"),currentUser != null ? currentUser.photoURL : null);
 });
 
 const addVideoStream = (video, stream) => {
@@ -178,11 +188,11 @@ inviteButton.addEventListener("click", (e) => {
   );
 });
 
-socket.on("createMessage", (message, socket_id, userName) => {
+socket.on("createMessage", (message, socket_id, userName,userImage) => {
   messages.innerHTML =
     messages.innerHTML +
     `<div class="message">
-        <b><img src='assets/svg/user.svg' alt='user' /> <span> ${
+        <b><img src=${ userImage ? userImage : 'assets/svg/user.svg'} alt='user' /> <span> ${
           socket_id === my_socket_id ? "me" : userName 
         }</span> </b>
         <span>${message}</span>
@@ -224,3 +234,10 @@ document.querySelector('#end_call').addEventListener('click',() => {
   socket.disconnect();
   window.location.replace('http://'+window.location.host)
 });
+
+// After load completion
+
+window.onload = () => {
+  currentUser = getCurrentUser()
+  if (currentUser) {}
+}

@@ -32,12 +32,12 @@ app.get("/:room", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  socket.on("join-room", (roomId, userId, userName) => {
-    console.log(roomId,userId,userName,socket.id)
+  socket.on("join-room", (roomId, userId, userName,userImage) => {
+    console.log(roomId,userId,userName,socket.id,userImage)
     socket.join(roomId);
     socket.to(roomId).broadcast.emit("user-connected", userId,socket.id);
     socket.on("message", (message, socket_id) => {
-      io.to(roomId).emit("createMessage", message, socket_id, userName);
+      io.to(roomId).emit("createMessage", message, socket_id, userName,userImage);
     });
   });
   socket.on('disconnect', () => {

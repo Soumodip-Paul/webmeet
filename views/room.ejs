@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>videoChatApp</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/tools/Toast.css">
     <script lang="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    <script src="/firebase/firebase-app.js"></script>
+    <script src="/firebase/firebase-firestore.js"></script>
+    <script src="/firebase/firebase-auth.js"></script>
+    <script src="js/firebaseconfig.js"></script>
+    <script src="js/tools/Toast.js"></script>
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script>
       const ROOM_ID = "<%= roomId %>";
@@ -16,7 +21,7 @@
     <div class="header">
       <h3>Video Chat</h2>
         <div class="header__back rotated">
-          <i class="fa fa-angle-left"></i>
+          <img src="assets/svg/arrow_left.svg"></i>
         </div>
     </div>  
     <div class="main">  
@@ -34,12 +39,12 @@
           <div id="muteButton" class="options__button">
             <img src ="./assets/svg/mic_on.svg"/>
           </div>
+          <div id="end_call" class="options__button round">
+            <img src ="./assets/svg/call_end.svg"/>
+          </div>
           <div id="showChat" class="options__button">
             <i class="fa fa-comment"></i>
           </div>
-        </div>
-        <div id="end_call" class="center">
-          <img src ="./assets/svg/call_end.svg"/>
         </div>
         <div class="options__right">
           <div id="inviteButton" class="options__button">

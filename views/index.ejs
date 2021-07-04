@@ -9,7 +9,9 @@
     <script src="/firebase/firebase-firestore.js"></script>
     <script src="/firebase/firebase-auth.js"></script>
     <script src="js/firebaseconfig.js"></script>
+    <script src="js/tools/Toast.js"></script>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/tools/Toast.css">
 </head>
 <body>
     <header>
@@ -18,29 +20,40 @@
         <img id='user-img' src="assets/svg/user.svg" alt="WebAcademy Logo" style="right: 0;"/>
         <img src="assets/svg/videocam_on.svg" alt="WebAcademy Logo" style="left: 0;"/>
         <nav>
-            <a href="#" class="active">Home</a>
-            <a href="#">Pricing</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms and Condition</a>
-            <a href="#">About us</a>
+            <div class="tab-link" id='Home-Link' onclick="openPage('Home',this)">Home</div>
+            <div class="tab-link" onclick="openPage('Price',this)">Pricing</div>
+            <div class="tab-link" onclick="openPage('Privacy-Policy',this)">Privacy Policy</div>
+            <div class="tab-link" onclick="openPage('T&C',this)">Terms and Condition</div>
+            <div class="tab-link" onclick="openPage('About',this)">About us</div>
         </nav>
     </header>
 
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum aliquam officia, adipisci obcaecati aperiam iusto facilis reprehenderit sunt ipsa ab molestiae repudiandae mollitia nisi cupiditate eius nostrum atque quos, beatae est itaque, magni quas pariatur. Temporibus, quod omnis. Saepe iure rem tenetur maxime quaerat dolore, accusamus magnam vitae aperiam dicta sed voluptates ratione! Quaerat dolor itaque, porro repellendus voluptatibus, similique minima fuga vel labore esse soluta veritatis? Commodi dignissimos ea, deserunt asperiores exercitationem illo? Atque voluptas dolore modi vero est, harum eaque necessitatibus animi alias ab. Magnam cupiditate quos architecto adipisci, quibusdam, quidem, pariatur quam ex praesentium culpa nihil?</div>
-    <div id="login-container" class="modal hidden">
-        
+    <div class="tabcontent" id="Home">
+        <button id="create_room">Create a room</button>
+    </div>
+    <div class="tabcontent" id="Price">
+        <p>Pricing are now not available</p>
+    </div>
+    <div class="tabcontent" id="Privacy-Policy">
+        <p>We have no privacy policy now</p>
+    </div>
+    <div class="tabcontent" id="About">
+        <p>We are together</p>
+    </div>
+    <div class="tabcontent" id="T&C">
+        <p>Term and Conditions</p>
     </div>
 
-    <button id="create_room">Create a room</button>
+    <div id="login-container" class="modal hidden">
+        <div class="popup zoom-animation">
+            <button class="">Log In</button>
+            <button style="background-color: #34a853; color: white;">Sign In With Email</button>
+            <button id='GSI' style="background: linear-gradient(to right, #00f3f4 ,#4285f4,#ea4335,#fbbc05,#34a853,#00f3f4); color: white;">Google Sign In</button>
+            <button style="background-color: #3d5b99; color: white;">FaceBook Sign In</button>
+            <button id='close' style="background-color : brown; color: white;"> Close </button>
+        </div>
+    </div>
+
     <script src="js/index.js"></script>
 </body>
 </html>
